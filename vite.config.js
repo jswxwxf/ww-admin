@@ -5,6 +5,7 @@ import vueJsx from '@vitejs/plugin-vue-jsx';
 import UnoCSS from 'unocss/vite';
 import { createSvgIconsPlugin } from 'vite-plugin-svg-icons';
 import svgLoader from 'vite-svg-loader';
+import autoprefixer from 'autoprefixer';
 
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => {
@@ -25,6 +26,11 @@ export default defineConfig(({ mode }) => {
       }),
       UnoCSS(),
     ],
+    css: {
+      postcss: {
+        plugins: [autoprefixer()],
+      },
+    },
     resolve: {
       alias: {
         /** @ 符号指向 src 目录 */
