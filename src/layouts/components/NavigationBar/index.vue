@@ -6,9 +6,9 @@ import { useRouter } from 'vue-router';
 // import { useUserStore } from '@/store/modules/user';
 import { UserFilled } from '@element-plus/icons-vue';
 import Hamburger from '../Hamburger/index.vue';
-// import Breadcrumb from '../Breadcrumb/index.vue';
+import Breadcrumb from '../Breadcrumb/index.vue';
 // import Sidebar from '../Sidebar/index.vue';
-import Notify from '@/components/Notify/index.vue';
+// import Notify from '@/components/Notify/index.vue';
 // import ThemeSwitch from '@/components/ThemeSwitch/index.vue';
 // import Screenfull from '@/components/Screenfull/index.vue';
 // import SearchMenu from '@/components/SearchMenu/index.vue';
@@ -38,8 +38,8 @@ const logout = () => {
 <template>
   <div class="navigation-bar">
     <Hamburger class="hamburger" />
-    <!-- <Breadcrumb v-if="!isTop || isMobile" class="breadcrumb" />
-    <Sidebar v-if="isTop && !isMobile" class="sidebar" /> -->
+    <Breadcrumb class="breadcrumb" />
+    <!-- <Sidebar v-if="isTop && !isMobile" class="sidebar" /> -->
     <div class="right-menu">
       <!-- <SearchMenu v-if="showSearchMenu" class="right-menu-item" />
       <Screenfull v-if="showScreenfull" class="right-menu-item" />

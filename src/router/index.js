@@ -7,7 +7,7 @@ import Layouts from '@/layouts/index.vue';
  * 常驻路由
  * 除了 redirect/403/404/login 等隐藏页面，其他页面建议设置 Name 属性
  */
-export const routes = [
+export const constantRoutes = [
   {
     path: '/redirect/:path(.*)',
     component: () => import('@/views/redirect/index.vue'),
@@ -248,43 +248,43 @@ export const routes = [
  * 用来放置有权限 (Roles 属性) 的路由
  * 必须带有 Name 属性
  */
-// export const dynamicRoutes = [
-//   {
-//     path: '/permission',
-//     component: Layouts,
-//     redirect: '/permission/page',
-//     name: 'Permission',
-//     meta: {
-//       title: '权限',
-//       svgIcon: 'lock',
-//       roles: ['admin', 'editor'], // 可以在根路由中设置角色
-//       alwaysShow: true, // 将始终显示根菜单
-//     },
-//     children: [
-//       {
-//         path: 'page',
-//         component: () => import('@/views/permission/page.vue'),
-//         name: 'PagePermission',
-//         meta: {
-//           title: '页面级',
-//           roles: ['admin'], // 或者在子导航中设置角色
-//         },
-//       },
-//       {
-//         path: 'directive',
-//         component: () => import('@/views/permission/directive.vue'),
-//         name: 'DirectivePermission',
-//         meta: {
-//           title: '按钮级', // 如果未设置角色，则表示：该页面不需要权限，但会继承根路由的角色
-//         },
-//       },
-//     ],
-//   },
-// ];
+export const dynamicRoutes = [
+  // {
+  //   path: '/permission',
+  //   component: Layouts,
+  //   redirect: '/permission/page',
+  //   name: 'Permission',
+  //   meta: {
+  //     title: '权限',
+  //     svgIcon: 'lock',
+  //     roles: ['admin', 'editor'], // 可以在根路由中设置角色
+  //     alwaysShow: true, // 将始终显示根菜单
+  //   },
+  //   children: [
+  //     {
+  //       path: 'page',
+  //       component: () => import('@/views/permission/page.vue'),
+  //       name: 'PagePermission',
+  //       meta: {
+  //         title: '页面级',
+  //         roles: ['admin'], // 或者在子导航中设置角色
+  //       },
+  //     },
+  //     {
+  //       path: 'directive',
+  //       component: () => import('@/views/permission/directive.vue'),
+  //       name: 'DirectivePermission',
+  //       meta: {
+  //         title: '按钮级', // 如果未设置角色，则表示：该页面不需要权限，但会继承根路由的角色
+  //       },
+  //     },
+  //   ],
+  // },
+];
 
 const router = createRouter({
   history,
-  routes,
+  routes: constantRoutes,
 });
 
 // /** 重置路由 */

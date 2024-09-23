@@ -1,6 +1,7 @@
 // core
 import { createApp } from 'vue';
 import App from './App.vue';
+import store from '@/store';
 import router from '@/router';
 
 // load
@@ -26,7 +27,7 @@ loadSvg(app);
 /** 加载自定义指令 */
 loadDirectives(app);
 
-app.use(router);
+app.use(store).use(router);
 router.isReady().then(() => {
   app.mount('#app');
 });

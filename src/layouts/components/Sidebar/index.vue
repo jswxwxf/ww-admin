@@ -1,71 +1,71 @@
 <script lang="ts" setup>
-// import { computed } from 'vue';
-// import { useRoute } from 'vue-router';
+import { computed } from 'vue';
+import { useRoute } from 'vue-router';
 // import { useAppStore } from '@/store/modules/app';
-// import { usePermissionStore } from '@/store/modules/permission';
+import { usePermissionStore } from '@/store/modules/permission';
 // import { useSettingsStore } from '@/store/modules/settings';
-// import SidebarItem from './SidebarItem.vue';
+import SidebarItem from './SidebarItem.vue';
 import Logo from '../Logo/index.vue';
 // import { useDevice } from '@/hooks/useDevice';
 // import { useLayoutMode } from '@/hooks/useLayoutMode';
-// import { getCssVariableValue } from '@/utils';
+import { getCssVariableValue } from '@/utils';
 
-// const v3SidebarMenuBgColor = getCssVariableValue('--v3-sidebar-menu-bg-color');
-// const v3SidebarMenuTextColor = getCssVariableValue('--v3-sidebar-menu-text-color');
-// const v3SidebarMenuActiveTextColor = getCssVariableValue('--v3-sidebar-menu-active-text-color');
+const v3SidebarMenuBgColor = getCssVariableValue('--v3-sidebar-menu-bg-color');
+const v3SidebarMenuTextColor = getCssVariableValue('--v3-sidebar-menu-text-color');
+const v3SidebarMenuActiveTextColor = getCssVariableValue('--v3-sidebar-menu-active-text-color');
 
 // const { isMobile } = useDevice();
 // const { isLeft, isTop } = useLayoutMode();
-// const route = useRoute();
+const route = useRoute();
 // const appStore = useAppStore();
-// const permissionStore = usePermissionStore();
+const permissionStore = usePermissionStore();
 // const settingsStore = useSettingsStore();
 
-// const activeMenu = computed(() => {
-//   const {
-//     meta: { activeMenu },
-//     path,
-//   } = route;
-//   return activeMenu ? activeMenu : path;
-// });
-// const noHiddenRoutes = computed(() => permissionStore.routes.filter((item) => !item.meta?.hidden));
-// const isCollapse = computed(() => !appStore.sidebar.opened);
+const activeMenu = computed(() => {
+  const {
+    meta: { activeMenu },
+    path,
+  } = route;
+  return activeMenu ? activeMenu : path;
+});
+const noHiddenRoutes = computed(() => permissionStore.allRoutes.filter((item) => !item.meta?.hidden));
+const isCollapse = computed(() => false);
 // const isLogo = computed(() => isLeft.value && settingsStore.showLogo);
-// const backgroundColor = computed(() => (isLeft.value ? v3SidebarMenuBgColor : undefined));
-// const textColor = computed(() => (isLeft.value ? v3SidebarMenuTextColor : undefined));
-// const activeTextColor = computed(() => (isLeft.value ? v3SidebarMenuActiveTextColor : undefined));
-// const sidebarMenuItemHeight = computed(() => {
-//   return !isTop.value ? 'var(--v3-sidebar-menu-item-height)' : 'var(--v3-navigationbar-height)';
-// });
-// const sidebarMenuHoverBgColor = computed(() => {
-//   return !isTop.value ? 'var(--v3-sidebar-menu-hover-bg-color)' : 'transparent';
-// });
-// const tipLineWidth = computed(() => {
-//   return !isTop.value ? '2px' : '0px';
-// });
+const backgroundColor = computed(() => v3SidebarMenuBgColor);
+const textColor = computed(() => v3SidebarMenuTextColor);
+const activeTextColor = computed(() => v3SidebarMenuActiveTextColor);
+const sidebarMenuItemHeight = computed(() => {
+  return 'var(--v3-sidebar-menu-item-height)';
+});
+const sidebarMenuHoverBgColor = computed(() => {
+  return 'var(--v3-sidebar-menu-hover-bg-color)';
+});
+const tipLineWidth = computed(() => {
+  return '2px';
+});
 // // 当为顶部模式时隐藏垂直滚动条
-// const hiddenScrollbarVerticalBar = computed(() => {
-//   return isTop.value ? 'none' : 'block';
-// });
+const hiddenScrollbarVerticalBar = computed(() => {
+  return 'block';
+});
 </script>
 
 <template>
   <div class="has-logo">
     <Logo />
-    <!-- <el-scrollbar wrap-class="scrollbar-wrapper">
+    <el-scrollbar wrap-class="scrollbar-wrapper">
       <el-menu
         :default-active="activeMenu"
-        :collapse="isCollapse && !isTop"
+        :collapse="isCollapse"
         :background-color="backgroundColor"
         :text-color="textColor"
         :active-text-color="activeTextColor"
         :unique-opened="true"
         :collapse-transition="false"
-        :mode="isTop && !isMobile ? 'horizontal' : 'vertical'"
+        mode="vertical"
       >
         <SidebarItem v-for="route in noHiddenRoutes" :key="route.path" :item="route" :base-path="route.path" />
       </el-menu>
-    </el-scrollbar> -->
+    </el-scrollbar>
   </div>
 </template>
 
