@@ -1,22 +1,21 @@
-import { defineConfig, loadEnv } from "vite";
-import { resolve } from "path";
-import vue from "@vitejs/plugin-vue";
-import vueJsx from "@vitejs/plugin-vue-jsx";
-
-console.log(process.env.VITE_APP_TITLE);
+import { defineConfig, loadEnv } from 'vite';
+import { resolve } from 'path';
+import vue from '@vitejs/plugin-vue';
+import vueJsx from '@vitejs/plugin-vue-jsx';
+import UnoCSS from 'unocss/vite';
 
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => {
-  const viteEnv = loadEnv(mode, process.cwd(), "");
+  const viteEnv = loadEnv(mode, process.cwd(), '');
 
   return {
     /** 打包时根据实际情况修改 base */
     base: viteEnv.VITE_PUBLIC_PATH,
-    plugins: [vue(), vueJsx()],
+    plugins: [vue(), vueJsx(), UnoCSS()],
     resolve: {
       alias: {
         /** @ 符号指向 src 目录 */
-        "@": resolve(__dirname, "./src"),
+        '@': resolve(__dirname, './src'),
       },
     },
     server: {
@@ -24,8 +23,8 @@ export default defineConfig(({ mode }) => {
       host: true, // host: "0.0.0.0"
       /** 接口代理 */
       proxy: {
-        "/api/v1": {
-          target: "https://mock.mengxuegu.com/mock/63218b5fb4c53348ed2bc212",
+        '/api/v1': {
+          target: 'https://mock.mengxuegu.com/mock/63218b5fb4c53348ed2bc212',
           ws: true,
           /** 是否允许跨域 */
           changeOrigin: true,
@@ -43,21 +42,21 @@ export default defineConfig(({ mode }) => {
            * 2. 如果你不想自定义 chunk 分割策略，可以直接移除这段配置
            */
           manualChunks: {
-            vue: ["vue", "vue-router", "pinia"],
-            element: ["element-plus", "@element-plus/icons-vue"],
+            vue: ['vue', 'vue-router', 'pinia'],
+            element: ['element-plus', '@element-plus/icons-vue'],
           },
         },
       },
     },
     /** 混淆器 */
     esbuild:
-      mode === "development"
+      mode === 'development'
         ? undefined
         : {
             /** 打包时移除 debugger 和 console.log */
-            drop: ["debugger", "console.log"],
+            drop: ['debugger', 'console.log'],
             /** 打包时移除所有注释 */
-            legalComments: "none",
+            legalComments: 'none',
           },
   };
 });

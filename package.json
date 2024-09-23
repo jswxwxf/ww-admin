@@ -27,6 +27,8 @@
     "vue-router": "^4.4.5"
   },
   "devDependencies": {
+    "@unocss/transformer-directives": "^0.62.4",
+    "@unocss/transformer-variant-group": "^0.62.4",
     "@vitejs/plugin-vue": "^5.1.2",
     "@vitejs/plugin-vue-jsx": "^4.0.1",
     "@vue/eslint-config-prettier": "9.0.0",
