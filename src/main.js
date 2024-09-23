@@ -1,6 +1,7 @@
 // core
 import { createApp } from 'vue';
 import App from './App.vue';
+import router from '@/router';
 
 // load
 import { loadSvg } from './icons';
@@ -9,7 +10,7 @@ import { loadDirectives } from './directives';
 
 // css
 import 'virtual:uno.css';
-import '@unocss/reset/normalize.css';
+import 'normalize.css';
 import 'element-plus/dist/index.css';
 import 'element-plus/theme-chalk/dark/css-vars.css';
 // import "vxe-table/lib/style.css"
@@ -25,4 +26,7 @@ loadSvg(app);
 /** 加载自定义指令 */
 loadDirectives(app);
 
-app.mount('#app');
+app.use(router);
+router.isReady().then(() => {
+  app.mount('#app');
+});
