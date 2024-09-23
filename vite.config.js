@@ -3,6 +3,8 @@ import { resolve } from 'path';
 import vue from '@vitejs/plugin-vue';
 import vueJsx from '@vitejs/plugin-vue-jsx';
 import UnoCSS from 'unocss/vite';
+import { createSvgIconsPlugin } from 'vite-plugin-svg-icons';
+import svgLoader from 'vite-svg-loader';
 
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => {
@@ -11,7 +13,18 @@ export default defineConfig(({ mode }) => {
   return {
     /** 打包时根据实际情况修改 base */
     base: viteEnv.VITE_PUBLIC_PATH,
-    plugins: [vue(), vueJsx(), UnoCSS()],
+    plugins: [
+      vue(),
+      vueJsx(),
+      /** 将 SVG 静态图转化为 Vue 组件 */
+      svgLoader({ defaultImport: 'url' }),
+      /** SVG */
+      createSvgIconsPlugin({
+        iconDirs: [resolve(process.cwd(), 'src/icons/svg')],
+        symbolId: 'icon-[dir]-[name]',
+      }),
+      UnoCSS(),
+    ],
     resolve: {
       alias: {
         /** @ 符号指向 src 目录 */
