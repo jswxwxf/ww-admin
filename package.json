@@ -30,6 +30,7 @@
   "devDependencies": {
     "@unocss/transformer-directives": "^0.62.4",
     "@unocss/transformer-variant-group": "^0.62.4",
+    "@vitejs/plugin-legacy": "^5.4.2",
     "@vitejs/plugin-vue": "^5.1.2",
     "@vitejs/plugin-vue-jsx": "^4.0.1",
     "@vue/eslint-config-prettier": "9.0.0",
@@ -40,6 +41,7 @@
     "fast-glob": "^3.3.2",
     "prettier": "^3.3.3",
     "sass": "^1.78.0",
+    "terser": "^5.33.0",
     "unocss": "^0.62.4",
     "vite": "^5.4.1",
     "vite-plugin-svg-icons": "^2.0.1",

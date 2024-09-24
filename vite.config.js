@@ -2,6 +2,7 @@ import { defineConfig, loadEnv } from 'vite';
 import { resolve } from 'path';
 import vue from '@vitejs/plugin-vue';
 import vueJsx from '@vitejs/plugin-vue-jsx';
+import legacy from '@vitejs/plugin-legacy';
 import UnoCSS from 'unocss/vite';
 import { createSvgIconsPlugin } from 'vite-plugin-svg-icons';
 import svgLoader from 'vite-svg-loader';
@@ -17,6 +18,8 @@ export default defineConfig(({ mode }) => {
     plugins: [
       vue(),
       vueJsx(),
+      legacy(),
+      UnoCSS(),
       /** 将 SVG 静态图转化为 Vue 组件 */
       svgLoader({ defaultImport: 'url' }),
       /** SVG */
@@ -24,7 +27,6 @@ export default defineConfig(({ mode }) => {
         iconDirs: [resolve(process.cwd(), 'src/icons/svg')],
         symbolId: 'icon-[dir]-[name]',
       }),
-      UnoCSS(),
     ],
     css: {
       postcss: {
