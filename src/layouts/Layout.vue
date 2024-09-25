@@ -3,7 +3,7 @@ import { computed } from 'vue';
 
 // import { computed } from 'vue';
 // import { storeToRefs } from 'pinia';
-// import { useAppStore } from '@/store/modules/app';
+import { useAppStore } from '@/store/modules/app';
 // import { useSettingsStore } from '@/store/modules/settings';
 import AppMain from './components/AppMain.vue';
 import NavigationBar from './components/NavigationBar/index.vue';
@@ -11,16 +11,16 @@ import Sidebar from './components/Sidebar/index.vue';
 // import { useDevice } from '@/hooks/useDevice';
 
 // const { isMobile } = useDevice();
-// const appStore = useAppStore();
+const appStore = useAppStore();
 // const settingsStore = useSettingsStore();
 // const { showTagsView, fixedHeader } = storeToRefs(settingsStore);
 
 /** 定义计算属性 layoutClasses，用于控制布局的类名 */
 const layoutClasses = computed(() => {
   return {
-    // hideSidebar: !appStore.sidebar.opened,
-    // openSidebar: appStore.sidebar.opened,
-    // withoutAnimation: appStore.sidebar.withoutAnimation,
+    hideSidebar: !appStore.sidebar.opened,
+    openSidebar: appStore.sidebar.opened,
+    withoutAnimation: appStore.sidebar.withoutAnimation,
     // mobile: isMobile.value,
   };
 });

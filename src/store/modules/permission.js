@@ -1,7 +1,7 @@
 import { ref } from 'vue';
 import store from '@/store';
 import { defineStore } from 'pinia';
-import { constantRoutes, dynamicRoutes } from '@/router';
+import { publicRoutes, protectedRoutes } from '@/router';
 // import { flatMultiLevelRoutes } from '@/router/helper';
 // import routeSettings from '@/config/route';
 
@@ -10,13 +10,13 @@ const hasPermission = (roles, route) => {
   return routeRoles ? roles.some((role) => routeRoles.includes(role)) : true;
 };
 
-const filterDynamicRoutes = (routes, roles) => {
+const filterProtectedRoutes = (routes, roles) => {
   const res = [];
   routes.forEach((route) => {
     const tempRoute = { ...route };
     if (hasPermission(roles, tempRoute)) {
       if (tempRoute.children) {
-        tempRoute.children = filterDynamicRoutes(tempRoute.children, roles);
+        tempRoute.children = filterProtectedRoutes(tempRoute.children, roles);
       }
       res.push(tempRoute);
     }
@@ -32,17 +32,17 @@ export const usePermissionStore = defineStore('permission', () => {
 
   /** 根据角色生成可访问的 Routes（可访问的路由 = 常驻路由 + 有访问权限的动态路由） */
   const setRoutes = (roles) => {
-    const routes = filterDynamicRoutes(dynamicRoutes, roles);
+    const routes = filterProtectedRoutes(protectedRoutes, roles);
     _set(routes);
   };
 
   /** 所有路由 = 所有常驻路由 + 所有动态路由 */
   const setAllRoutes = () => {
-    _set(dynamicRoutes);
+    _set(protectedRoutes);
   };
 
   const _set = (routes) => {
-    allRoutes.value = constantRoutes.concat(routes);
+    allRoutes.value = publicRoutes.concat(routes);
     // grantedRoutes.value = routeSettings.thirdLevelRouteCache ? flatMultiLevelRoutes(routes) : routes;
     grantedRoutes.value = routes;
   };

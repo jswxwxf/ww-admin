@@ -1,13 +1,12 @@
 import { createRouter } from 'vue-router';
 import { history } from './helper';
 import Layouts from '@/layouts/index.vue';
-// import routeSettings from '@/config/route';
 
 /**
  * 常驻路由
  * 除了 redirect/403/404/login 等隐藏页面，其他页面建议设置 Name 属性
  */
-export const constantRoutes = [
+export const publicRoutes = [
   {
     path: '/redirect/:path(.*)',
     component: () => import('@/views/redirect/index.vue'),
@@ -70,31 +69,31 @@ export const constantRoutes = [
   //     },
   //   ],
   // },
-  // {
-  //   path: '/link',
-  //   meta: {
-  //     title: '外链',
-  //     svgIcon: 'link',
-  //   },
-  //   children: [
-  //     {
-  //       path: 'https://juejin.cn/post/7089377403717287972',
-  //       component: () => {},
-  //       name: 'Link1',
-  //       meta: {
-  //         title: '中文文档',
-  //       },
-  //     },
-  //     {
-  //       path: 'https://juejin.cn/column/7207659644487139387',
-  //       component: () => {},
-  //       name: 'Link2',
-  //       meta: {
-  //         title: '新手教程',
-  //       },
-  //     },
-  //   ],
-  // },
+  {
+    path: '/link',
+    meta: {
+      title: '外链',
+      svgIcon: 'link',
+    },
+    children: [
+      {
+        path: 'https://juejin.cn/post/7089377403717287972',
+        component: () => {},
+        name: 'Link1',
+        meta: {
+          title: '中文文档',
+        },
+      },
+      {
+        path: 'https://juejin.cn/column/7207659644487139387',
+        component: () => {},
+        name: 'Link2',
+        meta: {
+          title: '新手教程',
+        },
+      },
+    ],
+  },
   // {
   //   path: '/table',
   //   component: Layouts,
@@ -248,7 +247,7 @@ export const constantRoutes = [
  * 用来放置有权限 (Roles 属性) 的路由
  * 必须带有 Name 属性
  */
-export const dynamicRoutes = [
+export const protectedRoutes = [
   // {
   //   path: '/permission',
   //   component: Layouts,
@@ -284,23 +283,23 @@ export const dynamicRoutes = [
 
 const router = createRouter({
   history,
-  routes: constantRoutes,
+  routes: publicRoutes,
 });
 
 // /** 重置路由 */
-// export function resetRouter() {
-//   // 注意：所有动态路由路由必须带有 Name 属性，否则可能会不能完全重置干净
-//   try {
-//     router.getRoutes().forEach((route) => {
-//       const { name, meta } = route;
-//       if (name && meta.roles?.length) {
-//         router.hasRoute(name) && router.removeRoute(name);
-//       }
-//     });
-//   } catch {
-//     // 强制刷新浏览器也行，只是交互体验不是很好
-//     window.location.reload();
-//   }
-// }
+export function resetRouter() {
+  //   // 注意：所有动态路由路由必须带有 Name 属性，否则可能会不能完全重置干净
+  //   try {
+  //     router.getRoutes().forEach((route) => {
+  //       const { name, meta } = route;
+  //       if (name && meta.roles?.length) {
+  //         router.hasRoute(name) && router.removeRoute(name);
+  //       }
+  //     });
+  //   } catch {
+  //     // 强制刷新浏览器也行，只是交互体验不是很好
+  //     window.location.reload();
+  //   }
+}
 
 export default router;

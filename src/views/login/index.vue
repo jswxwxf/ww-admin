@@ -1,26 +1,20 @@
 <script lang="ts" setup>
 import { ref } from 'vue';
 
-// import { useRouter } from "vue-router"
-// import { useUserStore } from "@/store/modules/user"
-// import { type FormInstance, type FormRules } from "element-plus"
-import { User, Lock } from '@element-plus/icons-vue';
-// import { getLoginCodeApi } from "@/api/login"
-// import { type LoginRequestData } from "@/api/login/types/login"
-// import ThemeSwitch from "@/components/ThemeSwitch/index.vue"
-// import Owl from "./components/Owl.vue"
-// import { useFocus } from "./hooks/useFocus"
+import { useRouter } from 'vue-router';
+import { useUserStore } from '@/store/modules/user';
+import { User, Lock, Key } from '@element-plus/icons-vue';
+import { getLoginCodeApi } from '@/api/login';
 
-// const router = useRouter()
-// const { isFocus, handleBlur, handleFocus } = useFocus()
+const router = useRouter();
 
 // /** 登录表单元素的引用 */
 const loginFormRef = ref(null);
 
-// /** 登录按钮 Loading */
-// const loading = ref(false)
-// /** 验证码图片 URL */
-// const codeUrl = ref("")
+/** 登录按钮 Loading */
+const loading = ref(false);
+/** 验证码图片 URL */
+const codeUrl = ref('');
 
 /** 登录表单数据 */
 const loginForm = ref({
@@ -42,39 +36,31 @@ const rules = {
 // /** 登录逻辑 */
 const handleLogin = async () => {
   await loginFormRef?.value?.validate();
-  //   loginFormRef.value?.validate((valid: boolean, fields) => {
-  //     if (valid) {
-  //       loading.value = true
-  //       useUserStore()
-  //         .login(loginForm)
-  //         .then(() => {
-  //           router.push({ path: "/" })
-  //         })
-  //         .catch(() => {
-  //           createCode()
-  //           loginForm.password = ""
-  //         })
-  //         .finally(() => {
-  //           loading.value = false
-  //         })
-  //     } else {
-  //       console.error("表单校验不通过", fields)
-  //     }
-  //   })
+  loading.value = true;
+  try {
+    useUserStore().login(loginForm.value);
+    router.push({ path: '/' });
+  } catch (error) {
+    createCode();
+    loginForm.value.password = '';
+  } finally {
+    loading.value = false;
+  }
 };
-// /** 创建验证码 */
-// const createCode = () => {
-//   // 先清空验证码的输入
-//   loginForm.code = ""
-//   // 获取验证码
-//   codeUrl.value = ""
-//   getLoginCodeApi().then((res) => {
-//     codeUrl.value = res.data
-//   })
-// }
 
-// /** 初始化验证码 */
-// createCode()
+/** 创建验证码 */
+const createCode = () => {
+  // 先清空验证码的输入
+  loginForm.value.code = '';
+  // 获取验证码
+  codeUrl.value = '';
+  getLoginCodeApi().then((res) => {
+    codeUrl.value = res.data;
+  });
+};
+
+/** 初始化验证码 */
+createCode();
 </script>
 
 <template>
@@ -106,11 +92,9 @@ const handleLogin = async () => {
               :prefix-icon="Lock"
               size="large"
               show-password
-              @blur="handleBlur"
-              @focus="handleFocus"
             />
           </el-form-item>
-          <!-- <el-form-item prop="code">
+          <el-form-item prop="code">
             <el-input
               v-model.trim="loginForm.code"
               placeholder="验证码"
@@ -135,7 +119,7 @@ const handleLogin = async () => {
                 </el-image>
               </template>
             </el-input>
-          </el-form-item> -->
+          </el-form-item>
           <el-button :loading="loading" type="primary" size="large" @click.prevent="handleLogin">登 录</el-button>
         </el-form>
       </div>

@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import { computed } from 'vue';
 import { useRoute } from 'vue-router';
-// import { useAppStore } from '@/store/modules/app';
+import { useAppStore } from '@/store/modules/app';
 import { usePermissionStore } from '@/store/modules/permission';
 // import { useSettingsStore } from '@/store/modules/settings';
 import SidebarItem from './SidebarItem.vue';
@@ -17,7 +17,7 @@ const v3SidebarMenuActiveTextColor = getCssVariableValue('--v3-sidebar-menu-acti
 // const { isMobile } = useDevice();
 // const { isLeft, isTop } = useLayoutMode();
 const route = useRoute();
-// const appStore = useAppStore();
+const appStore = useAppStore();
 const permissionStore = usePermissionStore();
 // const settingsStore = useSettingsStore();
 
@@ -29,7 +29,7 @@ const activeMenu = computed(() => {
   return activeMenu ? activeMenu : path;
 });
 const noHiddenRoutes = computed(() => permissionStore.allRoutes.filter((item) => !item.meta?.hidden));
-const isCollapse = computed(() => false);
+const isCollapse = computed(() => !appStore.sidebar.opened);
 // const isLogo = computed(() => isLeft.value && settingsStore.showLogo);
 const backgroundColor = computed(() => v3SidebarMenuBgColor);
 const textColor = computed(() => v3SidebarMenuTextColor);
@@ -51,7 +51,7 @@ const hiddenScrollbarVerticalBar = computed(() => {
 
 <template>
   <div class="has-logo">
-    <Logo />
+    <Logo :collapse="isCollapse" />
     <el-scrollbar wrap-class="scrollbar-wrapper">
       <el-menu
         :default-active="activeMenu"
@@ -151,6 +151,14 @@ const hiddenScrollbarVerticalBar = computed(() => {
     .el-sub-menu__title {
       @extend %tip-line;
     }
+  }
+}
+</style>
+
+<style lang="scss">
+.el-menu--vertical .el-menu-item {
+  &:hover {
+    background-color: var(--v3-sidebar-menu-hover-bg-color);
   }
 }
 </style>

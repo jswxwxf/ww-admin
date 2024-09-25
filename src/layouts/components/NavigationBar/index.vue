@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import { useRouter } from 'vue-router';
 // import { storeToRefs } from 'pinia';
-// import { useAppStore } from '@/store/modules/app';
+import { useAppStore } from '@/store/modules/app';
 // import { useSettingsStore } from '@/store/modules/settings';
 // import { useUserStore } from '@/store/modules/user';
 import { UserFilled } from '@element-plus/icons-vue';
@@ -18,15 +18,15 @@ import Breadcrumb from '../Breadcrumb/index.vue';
 // const { isMobile } = useDevice();
 // const { isTop } = useLayoutMode();
 const router = useRouter();
-// const appStore = useAppStore();
+const appStore = useAppStore();
 // const userStore = useUserStore();
 // const settingsStore = useSettingsStore();
 // const { showNotify, showThemeSwitch, showScreenfull, showSearchMenu } = storeToRefs(settingsStore);
 
-// /** 切换侧边栏 */
-// const toggleSidebar = () => {
-//   appStore.toggleSidebar(false);
-// };
+/** 切换侧边栏 */
+const toggleSidebar = () => {
+  appStore.toggleSidebar(false);
+};
 
 // /** 登出 */
 const logout = () => {
@@ -37,7 +37,7 @@ const logout = () => {
 
 <template>
   <div class="navigation-bar">
-    <Hamburger class="hamburger" />
+    <Hamburger :is-active="appStore.sidebar.opened" class="hamburger" @toggle-click="toggleSidebar" />
     <Breadcrumb class="breadcrumb" />
     <!-- <Sidebar v-if="isTop && !isMobile" class="sidebar" /> -->
     <div class="right-menu">
