@@ -17,6 +17,7 @@ import 'element-plus/theme-chalk/dark/css-vars.css';
 // import "vxe-table/lib/style.css"
 // import "vxe-table-plugin-element/dist/style.css"
 import '@/styles/index.scss';
+import { loadUtils } from './utils';
 
 const app = createApp(App);
 
@@ -26,6 +27,8 @@ loadPlugins(app);
 loadSvg(app);
 /** 加载自定义指令 */
 loadDirectives(app);
+/** 加载全局帮助函数 */
+loadUtils(app);
 
 app.use(store).use(router);
 router.isReady().then(() => {

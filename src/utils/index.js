@@ -1,4 +1,5 @@
 import dayjs from 'dayjs';
+import { isMatch } from '@/router/helper';
 // import { removeConfigLayout } from "@/utils/cache/local-storage"
 
 /** 格式化时间 */
@@ -32,3 +33,7 @@ export const resetConfigLayout = () => {
   // removeConfigLayout();
   location.reload();
 };
+
+export function loadUtils(app) {
+  app.config.globalProperties.$isMatch = isMatch;
+}

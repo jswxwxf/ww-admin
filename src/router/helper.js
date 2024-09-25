@@ -60,3 +60,11 @@ export const history =
 //     }
 //   })
 // }
+
+export function isMatch(url, $route = this.$route) {
+  const match = $route.matched[$route.matched.length - 1];
+  if (!match) {
+    return false;
+  }
+  return match.path === url;
+}
