@@ -126,4 +126,15 @@ export default {
   </div>
 </template>
 
-<style lang="less" scoped src="./OpsPrompt.less" />
+<style lang="less" scoped>
+.prompt {
+  :deep(.el-dialog) {
+    width: 35rem !important;
+    &__body {
+      --el-dialog-padding-primary: 20px;
+      padding-top: 1rem;
+      padding-bottom: 0;
+    }
+  }
+}
+</style>

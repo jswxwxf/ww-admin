@@ -6,6 +6,7 @@ import { usePermissionStore } from '@/store/modules/permission';
 // import { useSettingsStore } from '@/store/modules/settings';
 import SidebarItem from './SidebarItem.vue';
 import Logo from '../Logo/index.vue';
+import Footer from '../Footer/index.vue';
 // import { useDevice } from '@/hooks/useDevice';
 // import { useLayoutMode } from '@/hooks/useLayoutMode';
 import { getCssVariableValue } from '@/utils';
@@ -50,7 +51,7 @@ const hiddenScrollbarVerticalBar = computed(() => {
 </script>
 
 <template>
-  <div class="has-logo">
+  <div class="has-logo has-footer">
     <Logo :collapse="isCollapse" />
     <el-scrollbar wrap-class="scrollbar-wrapper">
       <el-menu
@@ -66,6 +67,7 @@ const hiddenScrollbarVerticalBar = computed(() => {
         <SidebarItem v-for="route in noHiddenRoutes" :key="route.path" :item="route" :base-path="route.path" />
       </el-menu>
     </el-scrollbar>
+    <Footer v-if="!isCollapse" />
   </div>
 </template>
 
@@ -82,16 +84,16 @@ const hiddenScrollbarVerticalBar = computed(() => {
   }
 }
 
-.has-logo {
+.has-logo.has-footer {
   .el-scrollbar {
     // 多 1% 是为了在左侧模式时侧边栏最底部不显示 1px 左右的白色线条
-    height: calc(101% - var(--v3-header-height));
+    height: calc(100% - var(--v3-header-height) - var(--v3-footer-height));
   }
 }
 
 .el-scrollbar {
   // 多 1% 是为了在顶部模式时防止垂直滚动
-  height: 101%;
+  height: 100%;
   :deep(.scrollbar-wrapper) {
     // 限制水平宽度
     overflow-x: hidden !important;

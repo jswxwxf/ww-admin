@@ -215,4 +215,14 @@ export default {
   </el-form-item>
 </template>
 
-<style lang="less" scoped src="./OpsFormItem.less" />
+<style lang="less" scoped>
+:deep(.ops-form-item--hide-label) {
+  .el-form-item__label {
+    display: none !important;
+  }
+}
+:deep(.el-upload__tip) {
+  margin-top: -3px;
+  margin-bottom: -10px;
+}
+</style>

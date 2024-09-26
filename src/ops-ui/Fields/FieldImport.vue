@@ -89,4 +89,13 @@ export default {
   </div>
 </template>
 
-<style lang="less" scoped src="./FieldImport.less" />
+<style lang="less" scoped>
+.field-import {
+  &--disabled {
+    cursor: not-allowed;
+    :deep(.el-upload) {
+      pointer-events: none;
+    }
+  }
+}
+</style>

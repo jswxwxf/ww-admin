@@ -95,7 +95,37 @@ export default {
   </el-form>
 </template>
 
-<style lang="less" scoped src="./OpsForm.less" />
+<style lang="less" scoped>
+:deep(.el-form) {
+  &-item {
+    margin-bottom: 25px;
+    .el-input.is-disabled .el-input__inner {
+      border: none !important;
+    }
+
+    &__content {
+      align-items: flex-start;
+    }
+  }
+}
+.ops-form--readonly {
+  :deep(.el-form-item) {
+    align-items: baseline;
+    margin-bottom: 0;
+    &__label {
+      &::before {
+        display: none;
+      }
+      line-height: 1.5;
+    }
+    &__content {
+      line-height: 2rem;
+      white-space: pre-wrap;
+      overflow-wrap: anywhere;
+    }
+  }
+}
+</style>
 
 <style lang="less">
 .ops-form {

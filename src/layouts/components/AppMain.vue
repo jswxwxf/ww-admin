@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 // import { useTagsViewStore } from '@/store/modules/tags-view';
 // import { useSettingsStore } from '@/store/modules/settings';
-import Footer from './Footer/index.vue';
+// import Footer from './Footer/index.vue';
 
 // const tagsViewStore = useTagsViewStore();
 // const settingsStore = useSettingsStore();
@@ -17,7 +17,7 @@ import Footer from './Footer/index.vue';
         </transition>
       </router-view>
       <!-- 页脚 -->
-      <Footer />
+      <!-- <Footer /> -->
     </div>
     <!-- 返回顶部 -->
     <!-- <el-backtop /> -->
@@ -41,7 +41,7 @@ import Footer from './Footer/index.vue';
   display: flex;
   flex-direction: column;
   .app-container-grow {
-    flex-grow: 1;
+    // flex-grow: 1;
   }
 }
 </style>

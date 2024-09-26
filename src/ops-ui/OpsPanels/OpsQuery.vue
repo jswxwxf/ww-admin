@@ -33,4 +33,77 @@ export default {
   </div>
 </template>
 
-<style lang="less" scoped src="./OpsQuery.less" />
+<style lang="less" scoped>
+.ops-query {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  gap: 0.5rem;
+
+  :deep(.table) {
+    flex: 1;
+    padding: 1rem;
+    background-color: white;
+  }
+
+  :deep(.panel-header) {
+    font-weight: bold;
+    font-size: 14px;
+    line-height: 20px;
+    margin: 1rem;
+    display: flex;
+    align-items: center;
+
+    &:before {
+      content: '|';
+      margin-right: 0.5rem;
+      position: relative;
+      top: -1px;
+    }
+
+    > div {
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+    }
+
+    .gap {
+      flex: 1;
+    }
+  }
+
+  :deep(.panel-header--large) {
+    font-size: 16px;
+  }
+
+  :deep(.panel-title) {
+    color: #303133;
+    font-weight: bold;
+    font-size: 16px;
+    line-height: 20px;
+    margin: 1rem;
+  }
+
+  :deep(.text-normal) {
+    font-style: normal;
+    font-weight: normal;
+  }
+
+  :deep(.panel-header + .panel-header) {
+    margin-top: 20rem;
+  }
+
+  :deep(.ops-table__table) {
+    position: relative;
+    .el-table {
+      position: absolute;
+      left: 0;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      overflow-y: auto;
+    }
+  }
+}
+</style>

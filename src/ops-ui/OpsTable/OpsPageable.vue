@@ -90,4 +90,14 @@ export default {
 }
 </style>
 
-<style lang="less" scoped src="./OpsPageable.less" />
+<style lang="less" scoped>
+.ops-pageable {
+  &__pagination {
+    :deep(.el-pagination) {
+      > span {
+        font-weight: bold;
+      }
+    }
+  }
+}
+</style>

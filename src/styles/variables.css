@@ -12,6 +12,8 @@
   --v3-header-box-shadow: var(--el-box-shadow-lighter);
   --v3-header-border-bottom-width: 1px;
   --v3-header-border-bottom: var(--v3-header-border-bottom-width) solid var(--el-fill-color);
+  /** Footer 区域 */
+  --v3-footer-height: 50px;
   /** NavigationBar 组件 */
   --v3-navigationbar-height: 50px;
   --v3-navigationbar-text-color: var(--el-text-color-regular);

@@ -118,6 +118,16 @@ export default {
     outline: none;
   }
 }
-</style>
 
-<style lang="less" scoped src="./OpsButton.less" />
+.el-button {
+  :deep(.icon) {
+    color: white;
+    width: 1.4em;
+    height: 1.4em;
+    margin-right: 0.5em;
+  }
+  :deep(.el-icon) {
+    margin-right: 0.5em;
+  }
+}
+</style>

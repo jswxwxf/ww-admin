@@ -155,4 +155,13 @@ export default {
 }
 </style>
 
-<style lang="less" scoped src="./FieldUpload.less" />
+<style lang="less" scoped>
+.field-upload {
+  &--disabled {
+    cursor: not-allowed;
+    :deep(.el-upload) {
+      pointer-events: none;
+    }
+  }
+}
+</style>

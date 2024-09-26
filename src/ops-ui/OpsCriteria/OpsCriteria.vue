@@ -89,6 +89,38 @@ export default {
     cursor: pointer;
   }
 }
-</style>
 
-<style lang="less" scoped src="./OpsCriteria.less" />
+.ops-criteria {
+  :deep(.el-input.is-disabled) .el-input__inner {
+    border: none !important;
+  }
+
+  :deep(.criteria-item) {
+    flex-basis: 15rem;
+  }
+  :deep(.el-select),
+  :deep(.el-input) {
+    width: 100%;
+  }
+  :deep(.el-form-item) {
+    margin-right: 0;
+    margin-bottom: 0;
+  }
+  :deep(.gap) {
+    flex: 1;
+  }
+  :deep(.el-button) {
+    width: 7rem;
+    &.is-plain {
+      --el-button-hover-text-color: var(--el-color-primary);
+      background-color: white;
+    }
+    .el-icon {
+      margin-right: 0.5rem;
+    }
+    &.is-disabled {
+      opacity: 0.5;
+    }
+  }
+}
+</style>

@@ -111,7 +111,15 @@ export const publicRoutes = [
         name: 'ElementPlus',
         meta: {
           title: 'Element Plus',
-          keepAlive: true,
+          // keepAlive: true,
+        },
+      },
+      {
+        path: 'user',
+        component: () => import('@/views/table/user/index.vue'),
+        name: 'User',
+        meta: {
+          title: 'User',
         },
       },
       // {

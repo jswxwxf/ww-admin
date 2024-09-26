@@ -315,7 +315,99 @@ export default {
   </div>
 </template>
 
-<style lang="less" scoped src="./OpsTable.less" />
+<style lang="less" scoped>
+.ops-table {
+  --el-component-size-large: 38px;
+
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  gap: 0.7rem;
+
+  &__table {
+    flex: 1;
+    position: relative;
+  }
+
+  &__pagination {
+    display: flex;
+    align-items: center;
+    font-weight: bold;
+
+    :deep(.el-pagination) {
+      > span {
+        font-weight: bold;
+      }
+    }
+    .gap {
+      flex: 1;
+    }
+    .selection-count {
+      font-size: 14px;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+    }
+  }
+
+  :deep(.el-table) {
+    &__header {
+      .el-table__cell {
+        .cell {
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+        }
+      }
+    }
+    .el-table__row {
+      .widget-column {
+        .cell {
+          text-overflow: unset;
+          text-align: center;
+        }
+      }
+      td {
+        vertical-align: top;
+        .cell {
+          word-break: initial;
+          .svg-button {
+            svg {
+              transform: translateY(0.2rem);
+            }
+          }
+          .el-link {
+            display: inline-block;
+            max-width: 100%;
+            &__inner {
+              display: block;
+              overflow: hidden;
+              text-overflow: ellipsis;
+              width: 100%;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  &__action {
+    display: flex;
+    justify-content: space-between;
+    > div {
+      display: flex;
+      justify-content: space-between;
+      gap: 0.5rem;
+      :deep(.el-button + .el-button) {
+        margin-left: 0;
+      }
+    }
+  }
+  :deep(.svg-button + .svg-button) {
+    margin-left: 0.5rem;
+  }
+}
+</style>
 
 <style lang="less">
 .ops-table__overflow-tooltip {

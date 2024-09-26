@@ -83,6 +83,119 @@ export default {
   gap: 0.5rem;
   flex-wrap: wrap;
 }
-</style>
 
-<style lang="less" scoped src="./FieldRenderer.less" />
+.field-labels {
+  width: 100%;
+
+  &__line {
+    width: 100%;
+    display: flex;
+    align-items: flex-start;
+    gap: 0.3rem;
+
+    :deep(.el-form-item) {
+      margin-bottom: 0 !important;
+      margin-right: 0 !important;
+      &__error {
+        display: none;
+      }
+    }
+
+    &.show-error {
+      :deep(.el-form-item) {
+        padding-top: 1px;
+        &__error {
+          display: block;
+          position: unset;
+        }
+      }
+    }
+
+    .is-error {
+      scroll-margin: 300px;
+    }
+
+    .field-labels__field {
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      &-key {
+        flex: 0.4;
+      }
+      &-value {
+        flex: 0.6;
+      }
+    }
+  }
+
+  &__header {
+    height: 2rem;
+    line-height: 2rem;
+    .field-labels__field {
+      text-align: center;
+      font-weight: bold;
+    }
+    .el-button {
+      visibility: hidden;
+    }
+  }
+
+  &__line + &__line {
+    margin-top: 0.3rem;
+  }
+
+  &__content.is-scrollable {
+    height: 14rem;
+    max-height: 14rem;
+    overflow: auto;
+  }
+
+  .el-button.is-circle {
+    width: 2.3rem;
+    height: 2.3rem;
+    margin-left: 0;
+    padding: 0;
+    .el-icon {
+      margin-right: 0;
+    }
+    &.is-disabled {
+      opacity: 0.5;
+    }
+  }
+}
+
+.field--template {
+  white-space: pre-line;
+  :deep(*) {
+    margin: 0;
+  }
+  :deep(h1),
+  :deep(h2),
+  :deep(h3),
+  :deep(h4),
+  :deep(h5),
+  :deep(h6) {
+    margin-bottom: 1rem;
+  }
+}
+
+.field-renderer-labels {
+  width: 100%;
+  position: relative;
+  top: 6px;
+
+  :deep(.el-table) {
+    .el-table__cell {
+      padding: 5px 0;
+    }
+    th,
+    td {
+      vertical-align: top;
+      height: 32px;
+      .cell {
+        word-break: initial;
+      }
+    }
+  }
+}
+</style>

@@ -144,4 +144,20 @@ export default {
   </el-input>
 </template>
 
-<style lang="less" scoped src="./FieldInput.less" />
+<style lang="less" scoped>
+.field-input--show-word-limit {
+  :deep(.el-textarea__inner) {
+    padding-bottom: 1.2rem;
+  }
+}
+.el-input {
+  &__wrapper {
+    width: 100%;
+    .el-input__inner {
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+    }
+  }
+}
+</style>
