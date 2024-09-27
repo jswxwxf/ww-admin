@@ -38,7 +38,7 @@ const handleLogin = async () => {
   await loginFormRef?.value?.validate();
   loading.value = true;
   try {
-    useUserStore().login(loginForm.value);
+    await useUserStore().login(loginForm.value);
     router.push({ path: '/' });
   } catch (error) {
     createCode();

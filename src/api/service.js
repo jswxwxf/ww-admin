@@ -5,9 +5,8 @@ import { get, merge } from 'lodash-es';
 import { getToken } from '@/utils/cookies';
 
 /** 退出登录并强制刷新页面（会重定向到登录页） */
-function logout() {
+async function logout() {
   useUserStoreHook().logout();
-  location.reload();
 }
 
 /** 创建请求实例 */

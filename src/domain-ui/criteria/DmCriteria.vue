@@ -1,3 +1,18 @@
+<script setup>
+defineOptions({
+  name: 'DmCriteria',
+});
+
+defineProps({
+  model: {
+    type: Object,
+    default() {
+      return {};
+    },
+  },
+});
+</script>
+
 <!-- <script>
 import { ref, toRefs, watch } from 'vue';
 import OpsCriteriaAdvanced from './OpsCriteriaAdvanced.vue';
@@ -44,39 +59,71 @@ export default {
 };
 </script> -->
 
-<script setup>
-defineOptions({
-  name: 'DmCriteria',
-});
-
-defineProps({
-  model: {
-    type: Object,
-    default() {
-      return {
-        advanced: [],
-      };
-    },
-  },
-});
-</script>
-
 <template>
   <div class="dm-criteria">
     <el-form :model="model" inline action="javascript:void(0)">
-      <el-card body-class="flex flex-row">
-        <slot />
-      </el-card>
+      <slot />
     </el-form>
   </div>
 </template>
 
 <style lang="scss" scoped>
 .dm-criteria {
-  .el-card {
-    :deep(.el-card__body) {
-      @apply pb-2;
-    }
-  }
+  padding: 1rem;
+  padding-bottom: 0;
+  background-color: white;
+
+  // .el-form {
+  //   display: flex;
+  //   gap: 0.7rem;
+  //   align-items: flex-start;
+  //   margin-bottom: 15px;
+  //   .el-icon.handle {
+  //     height: 38px;
+  //   }
+  // }
+
+  // .el-divider--horizontal {
+  //   margin: 0;
+  //   border-color: gray;
+  // }
+
+  // .handle {
+  //   cursor: pointer;
+  // }
 }
+
+// .dm-criteria {
+//   :deep(.el-input.is-disabled) .el-input__inner {
+//     border: none !important;
+//   }
+
+//   :deep(.criteria-item) {
+//     flex-basis: 15rem;
+//   }
+//   :deep(.el-select),
+//   :deep(.el-input) {
+//     width: 100%;
+//   }
+//   :deep(.el-form-item) {
+//     margin-right: 0;
+//     margin-bottom: 0;
+//   }
+//   :deep(.gap) {
+//     flex: 1;
+//   }
+//   :deep(.el-button) {
+//     width: 7rem;
+//     &.is-plain {
+//       --el-button-hover-text-color: var(--el-color-primary);
+//       background-color: white;
+//     }
+//     .el-icon {
+//       margin-right: 0.5rem;
+//     }
+//     &.is-disabled {
+//       opacity: 0.5;
+//     }
+//   }
+// }
 </style>

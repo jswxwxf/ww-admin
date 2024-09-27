@@ -40,6 +40,12 @@ const theOnlyOneChild = computed(() => {
   }
 });
 
+const showLink = computed(
+  () =>
+    (!alwaysShowRootMenu.value && theOnlyOneChild.value && !theOnlyOneChild.value.children) ||
+    theOnlyOneChild.value?.meta?.index === true,
+);
+
 /** 解析路径 */
 const resolvePath = (routePath) => {
   switch (true) {
@@ -54,7 +60,7 @@ const resolvePath = (routePath) => {
 </script>
 
 <template>
-  <template v-if="!alwaysShowRootMenu && theOnlyOneChild && !theOnlyOneChild.children">
+  <template v-if="showLink">
     <SidebarItemLink v-if="theOnlyOneChild.meta" :to="resolvePath(theOnlyOneChild.path)">
       <el-menu-item :index="resolvePath(theOnlyOneChild.path)">
         <SvgIcon v-if="theOnlyOneChild.meta.svgIcon" :name="theOnlyOneChild.meta.svgIcon" />

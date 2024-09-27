@@ -45,6 +45,7 @@ export default {
     flex: 1;
     padding: 1rem;
     background-color: white;
+    position: relative;
   }
 
   :deep(.panel-header) {

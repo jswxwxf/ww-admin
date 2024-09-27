@@ -7,11 +7,13 @@ import { getToken, removeToken, setToken } from '@/utils/cookies';
 import { resetRouter } from '@/router';
 import { loginApi, getUserInfoApi } from '@/api/login';
 import routeSettings from '@/config/route';
+import { useRouter } from 'vue-router';
 
 export const useUserStore = defineStore('user', () => {
   const token = ref(getToken() || '');
   const roles = ref([]);
   const username = ref('');
+  const router = useRouter();
 
   // const tagsViewStore = useTagsViewStore();
   // const settingsStore = useSettingsStore();
@@ -41,11 +43,14 @@ export const useUserStore = defineStore('user', () => {
   };
 
   /** 登出 */
-  const logout = () => {
+  const logout = async () => {
     removeToken();
     token.value = '';
     roles.value = [];
     resetRouter();
+    document.body.style.visibility = 'hidden';
+    await router.replace({ path: '/login' });
+    location.reload();
     // _resetTagsView();
   };
 

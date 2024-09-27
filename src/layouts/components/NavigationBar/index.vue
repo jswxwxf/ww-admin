@@ -1,9 +1,8 @@
 <script lang="ts" setup>
-import { useRouter } from 'vue-router';
 // import { storeToRefs } from 'pinia';
 import { useAppStore } from '@/store/modules/app';
 // import { useSettingsStore } from '@/store/modules/settings';
-// import { useUserStore } from '@/store/modules/user';
+import { useUserStore } from '@/store/modules/user';
 import { UserFilled } from '@element-plus/icons-vue';
 import Hamburger from '../Hamburger/index.vue';
 import Breadcrumb from '../Breadcrumb/index.vue';
@@ -17,9 +16,8 @@ import Breadcrumb from '../Breadcrumb/index.vue';
 
 // const { isMobile } = useDevice();
 // const { isTop } = useLayoutMode();
-const router = useRouter();
 const appStore = useAppStore();
-// const userStore = useUserStore();
+const userStore = useUserStore();
 // const settingsStore = useSettingsStore();
 // const { showNotify, showThemeSwitch, showScreenfull, showSearchMenu } = storeToRefs(settingsStore);
 
@@ -30,8 +28,7 @@ const toggleSidebar = () => {
 
 // /** 登出 */
 const logout = () => {
-  // userStore.logout();
-  router.push('/login');
+  userStore.logout();
 };
 </script>
 
@@ -48,8 +45,7 @@ const logout = () => {
       <el-dropdown class="right-menu-item">
         <div class="right-menu-avatar">
           <el-avatar :icon="UserFilled" :size="30" />
-          <!-- <span>{{ userStore.username }}</span> -->
-          <span>Admin</span>
+          <span>{{ userStore.username }}</span>
         </div>
         <template #dropdown>
           <el-dropdown-menu>

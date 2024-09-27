@@ -17,7 +17,16 @@
 
 // 业务页面几乎都应该在根元素上挂载 class="app-container"，以保持页面美观
 .app-container {
+  // height: 100%;
+  // width: 100%;
   padding: 20px;
+  // background-color: #f5f5f5;
+  // overflow-x: hidden;
+  // overflow-y: auto;
+  .app-container {
+    padding: 0;
+    width: 100%;
+  }
 }
 
 html {
@@ -37,6 +46,14 @@ body {
 
 #app {
   height: 100%;
+  overflow: hidden;
+  // display: flex;
+  // flex-flow: column;
+
+  // .app-main {
+  //   overflow-y: auto;
+  //   flex-grow: 1;
+  // }
 }
 
 *,

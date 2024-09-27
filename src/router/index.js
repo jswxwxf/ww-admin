@@ -1,5 +1,5 @@
 import { createRouter } from 'vue-router';
-import { history } from './helper';
+import { history, isMatch } from './helper';
 import Layouts from '@/layouts/index.vue';
 
 /**
@@ -97,7 +97,7 @@ export const publicRoutes = [
   {
     path: '/table',
     component: Layouts,
-    redirect: '/table/element-plus',
+    // redirect: '/table/element-plus',
     name: 'Table',
     meta: {
       title: '表格',
@@ -120,7 +120,20 @@ export const publicRoutes = [
         name: 'User',
         meta: {
           title: 'User',
+          index: true,
         },
+        children: [
+          {
+            path: 'add',
+            component: () => import('@/views/table/user/add.vue'),
+            name: 'UserAdd',
+            meta: {
+              title: 'Add User',
+              hidden: true,
+              activeMenu: '/table/user',
+            },
+          },
+        ],
       },
       // {
       //   path: 'vxe-table',
